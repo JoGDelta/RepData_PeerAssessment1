@@ -13,7 +13,7 @@ output:
 
 This assignment makes use of data from a personal activity monitoring device. This device collects data at 5 minute intervals through out the day. The data consists of two months of data from an anonymous individual collected during the months of October and November, 2012 and include the number of steps taken in 5 minute intervals each day.
 
-The assigment will be completed in a number of parts using the ggplot2 plotting package.
+The assigment will be completed in a number of parts using both the base and ggplot2 plotting packages.
 
 ## Part 1 - Loading and preprocessing the data
 
@@ -189,7 +189,7 @@ median(StepsByDay_imputed$steps)
 ## [1] 10766.19
 ```
 
-With the missing data filled in, the new mean (using imputed data) does not differ from the old mean, while the new median is bit higher than the old median. Also, the new mean and new median are now the same. These results are not surprising because I used the mean (average) number of steps per interval to fill in the 2304 missing values.
+With the missing data filled in, the new mean (using imputed data) does not differ from the old mean, while the new median is bit higher than the old median. Also, the new mean and new median are now the same. These results are unsurprising because I used the mean (average) number of steps per interval to fill in the 2304 missing values.
 
 ## Part 5 - Are there differences in activity patterns between weekdays and weekends?
 
