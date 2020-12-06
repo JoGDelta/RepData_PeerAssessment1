@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Background information on assignment
 
-This assignment makes use of data from a personal activity monitoring device. This device collects data at 5 minute intervals through out the day. The data consists of two months of data from an anonymous individual collected during the months of October and November, 2012 and include the number of steps taken in 5 minute intervals each day.
+This assignment makes use of data from a personal activity monitoring device. This device collects data at 5 minute intervals throughout the day. The data consists of two months of data from an anonymous individual collected during the months of October and November, 2012 and include the number of steps taken in 5 minute intervals each day.
 
 The assigment will be completed in a number of parts using both the base and ggplot2 plotting packages.
 
@@ -21,7 +21,7 @@ The assigment will be completed in a number of parts using both the base and ggp
 
 #### 1. Load the data.
 
-```{r}
+```{r part1, include = TRUE}
 activity <- read.csv("./activity.csv")
 
 head(activity)
@@ -38,7 +38,7 @@ For this part of the assignment, missing data values in the dataset are ignored.
 
 #### 1. Make a histogram of the total number of steps taken each day.
 
-```{r}
+```{r part2_hist, include = TRUE}
 StepsByDay <- aggregate(steps~date, activity, sum)
 
 hist(StepsByDay$steps, xlab = "number of steps per day", ylab = "number of days", main = "Total Steps Taken per Day")
@@ -46,7 +46,7 @@ hist(StepsByDay$steps, xlab = "number of steps per day", ylab = "number of days"
 
 #### 2. Calculate and report the mean and median total number of steps taken per day.
 
-```{r}
+```{r part2_calcs, include = TRUE}
 mean(StepsByDay$steps)
 
 median(StepsByDay$steps)
@@ -56,7 +56,7 @@ median(StepsByDay$steps)
 
 #### 1. Make a time series plot of the 5-minute interval and the average number of steps taken, averaged across all days.
 
-```{r}
+```{r part3_series, include = TRUE}
 StepsByInterval <- aggregate(steps~interval, activity, mean)
 
 with(StepsByInterval, plot(interval, steps, type = "l"))
@@ -64,7 +64,7 @@ with(StepsByInterval, plot(interval, steps, type = "l"))
 
 #### 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
-```{r}
+```{r part3_max, include = TRUE}
 StepsByInterval[which.max(StepsByInterval[,2]),1]
 ```
 
@@ -74,7 +74,7 @@ There are a number of days/intervals where there are missing values coded as NA.
 
 #### 1. Calculate and report the total number of missing values in the dataset.
 
-```{r}
+```{r part4_missing, include = TRUE}
 sum(is.na(activity[,1]))
 ```
 
@@ -84,13 +84,13 @@ There are 2304 missing values in the dataset.
 
 I will fill in missing data using the average number of steps during that interval.
 
-```{r}
+```{r part4_strat, include = TRUE}
 avg_steps <- mean(StepsByInterval$steps)
 ```
 
 #### 3. Create a new dataset that is equal to the original dataset, but with the missing data filled in.
 
-```{r}
+```{r part4_impute, include = TRUE}
 missing <- is.na(activity[, 1])
 
 activity_imputed <- activity
@@ -101,13 +101,13 @@ head(activity_imputed)
 
 #### 4. Make a histogram of the number of steps taken each day, and calculate the mean and median total number of steps taken per day.
 
-```{r}
+```{r part4_hist, include = TRUE}
 StepsByDay_imputed <- aggregate(steps~date, activity_imputed, sum)
 
 hist(StepsByDay_imputed$steps, xlab = "number of steps per day", ylab = "number of days", main = "Total Steps Taken per Day (with missing values imputed)")
 ```
 
-```{r}
+```{r part4_calcs, include = TRUE}
 mean(StepsByDay_imputed$steps)
 
 median(StepsByDay_imputed$steps)
@@ -119,7 +119,7 @@ With the missing data filled in, the new mean (using imputed data) does not diff
 
 #### 1. Create a new factor variable in the dataset with two levels - weekday and weekend.
 
-```{r}
+```{r part5_daytype, include = TRUE}
 library(dplyr)
 
 activity_imputed$date <- as.Date(activity_imputed$date)
@@ -132,7 +132,7 @@ head(activity_DOW)
 
 #### 2. Make a panel plot containg a time series plot of the 5-minute interval and the average number of steps taken, averaged across all weekdays or weekends.
 
-```{r}
+```{r part5_plot, include = TRUE}
 library(ggplot2)
 
 StepsByInterval_DayType <- aggregate(steps~interval + DayType, activity_DOW, mean)

@@ -11,7 +11,7 @@ output:
 
 ## Background information on assignment
 
-This assignment makes use of data from a personal activity monitoring device. This device collects data at 5 minute intervals through out the day. The data consists of two months of data from an anonymous individual collected during the months of October and November, 2012 and include the number of steps taken in 5 minute intervals each day.
+This assignment makes use of data from a personal activity monitoring device. This device collects data at 5 minute intervals throughout the day. The data consists of two months of data from an anonymous individual collected during the months of October and November, 2012 and include the number of steps taken in 5 minute intervals each day.
 
 The assigment will be completed in a number of parts using both the base and ggplot2 plotting packages.
 
@@ -68,7 +68,7 @@ StepsByDay <- aggregate(steps~date, activity, sum)
 hist(StepsByDay$steps, xlab = "number of steps per day", ylab = "number of days", main = "Total Steps Taken per Day")
 ```
 
-![](JoGDelta_RepData_PeerAssessment1_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+![](JoGDelta_RepData_PeerAssessment1_files/figure-html/part2_hist-1.png)<!-- -->
 
 #### 2. Calculate and report the mean and median total number of steps taken per day.
 
@@ -100,7 +100,7 @@ StepsByInterval <- aggregate(steps~interval, activity, mean)
 with(StepsByInterval, plot(interval, steps, type = "l"))
 ```
 
-![](JoGDelta_RepData_PeerAssessment1_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](JoGDelta_RepData_PeerAssessment1_files/figure-html/part3_series-1.png)<!-- -->
 
 #### 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -170,7 +170,7 @@ StepsByDay_imputed <- aggregate(steps~date, activity_imputed, sum)
 hist(StepsByDay_imputed$steps, xlab = "number of steps per day", ylab = "number of days", main = "Total Steps Taken per Day (with missing values imputed)")
 ```
 
-![](JoGDelta_RepData_PeerAssessment1_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](JoGDelta_RepData_PeerAssessment1_files/figure-html/part4_hist-1.png)<!-- -->
 
 
 ```r
@@ -275,4 +275,4 @@ plot <- ggplot(StepsByInterval_DayType, aes(x = interval, y = steps, color = Day
 print(plot)
 ```
 
-![](JoGDelta_RepData_PeerAssessment1_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+![](JoGDelta_RepData_PeerAssessment1_files/figure-html/part5_plot-1.png)<!-- -->
